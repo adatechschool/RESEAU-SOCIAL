@@ -33,7 +33,7 @@
         // on va en avoir besoin pour la suite
         $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
         //verification
-        if ($mysqli->connect_errno)
+        if ($mysqli->connect_error)
         {
             echo("Échec de la connexion : " . $mysqli->connect_error);
             exit();
@@ -61,11 +61,11 @@
                  */
                 while ($tag = $lesInformations->fetch_assoc())
                 {
-                    echo "<pre>" . print_r($tag, 1) . "</pre>";
+                    // echo "<pre>" . print_r($tag, 1) . "</pre>";
                     ?>
                     <article>
-                        <h3>#chaussette</h3>
-                        <p>id:321</p>
+                        <h3><?php echo $tag["label"]?></h3>
+                        <p><?php echo $tag["id"]?></p>
                         <nav>
                             <a href="tags.php?tag_id=321">Messages</a>
                         </nav>
@@ -94,11 +94,11 @@
                  */
                 while ($tag = $lesInformations->fetch_assoc())
                 {
-                    echo "<pre>" . print_r($tag, 1) . "</pre>";
+                    // echo "<pre>" . print_r($tag, 1) . "</pre>";
                     ?>
                     <article>
-                        <h3>Alexandra</h3>
-                        <p>id:123</p>
+                        <h3><?php echo $tag["alias"]?></h3>
+                        <p><?php echo $tag["id"]?></p>
                         <nav>
                             <a href="wall.php?user_id=123">Mur</a>
                             | <a href="feed.php?user_id=123">Flux</a>
