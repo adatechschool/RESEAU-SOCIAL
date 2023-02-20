@@ -77,7 +77,11 @@
     if ()
  } ?>
                     </p>
+
                 </section>
+                <button type="button">Suivre</button>
+
+                
             </aside>
             <main>
                 <?php
