@@ -37,7 +37,11 @@
                         
                         (n° <?php echo $userId ?>)
                     </p>
+
                 </section>
+                <button type="button">Suivre</button>
+
+                
             </aside>
             <main>
                 <?php
