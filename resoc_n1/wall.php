@@ -41,12 +41,15 @@
                         (n° <?php echo $userId ?>)
 
                        <article>
-        <h2>Poster un message</h2>
+      
             <?php
     $user_id1 = $_SESSION['connected_id'];
     //echo "<pre>" . print_r($_GET['user_id']) . "</pre>";
-    if($_GET['user_id'] == $_SESSION['connected_id']){
+    if($_GET['user_id'] == $_SESSION['connected_id']){ ?>
 
+<h2>Poster un message</h2>
+        
+<?php
    
     if (isset($_POST['message'])){
         $postContent1 = $mysqli->real_escape_string($_POST['message']);
@@ -73,13 +76,31 @@
                     </form>               
     </article>
                
- <?php } else {
-    if ()
- } ?>
+ <?php }  ?>
                     </p>
 
                 </section>
-                <button type="button">Suivre</button>
+                <?php
+
+                 $enCoursDeTraitement = isset($_POST['subscribe']);
+                 $followedId=$_GET['user_id'];
+                if($enCoursDeTraitement){
+                    $lInstructionSql3="INSERT INTO followers VALUES (NULL, '$followedId', '$user_id1')";
+                }
+                $ok2 = $mysqli->query($lInstructionSql3);
+                if (! $ok2){
+                    echo "Impossible de suivre ce compte : " . $mysqli->error;
+                } else {
+                    echo "Vous suivez désormais le compte de l'utilisatrice n°$followedId";
+                }
+                
+                 ?>
+                <form method='post'>
+        <input type='hidden' name='???' value='a_changer'>
+        <input class="submit" name="subscribe" type='submit' value="<?php echo $value;?>">
+    </form>
+                
+
 
                 
             </aside>
