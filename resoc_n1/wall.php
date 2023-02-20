@@ -41,11 +41,11 @@
                         (n° <?php echo $userId ?>)
 
                        <article>
-        <h2>Poster un message</h2>
+        
             <?php
     $user_id1 = $_SESSION['connected_id'];
     //echo "<pre>" . print_r($_GET['user_id']) . "</pre>";
-    if($_GET['user_id'] == $_SESSION['connected_id']){
+    if($_GET['user_id'] == $_SESSION['connected_id']){ 
 
    
     if (isset($_POST['message'])){
@@ -77,9 +77,14 @@
                     </p>
 
                 </section>
-                <button type="button">Suivre</button>
+    <?php 
 
-                
+    ?>
+              <form method='post'>
+        <input type='hidden' name='???' value='a_changer'>
+        <input class="submit" name="subscribe" type='submit' value="<?php echo $value;?>">
+            </form>
+  
             </aside>
             <main>
                 <?php
