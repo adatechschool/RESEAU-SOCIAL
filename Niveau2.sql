@@ -40,6 +40,8 @@ CREATE TABLE IF NOT EXISTS `socialnetwork`.`posts` (
   `content` TEXT NOT NULL,
   `created` DATETIME NOT NULL,
   `parent_id` INT UNSIGNED NULL,
+  `permalink` TEXT NOT NULL,
+  `post_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_posts_users_idx` (`user_id` ASC),
   INDEX `fk_posts_posts1_idx` (`parent_id` ASC),
