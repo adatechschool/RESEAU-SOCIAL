@@ -52,7 +52,7 @@
         $postContent1 = $mysqli->real_escape_string($_POST['message']);
 
         $lInstructionSql1 = "INSERT INTO posts (user_id, content, created) "
-        . "VALUES ('$user_id1', '$postContent1', NOW())";
+        . "VALUES ('$user_id1', '$postContent1', NOW()),";
 
         $ok = $mysqli->query($lInstructionSql1);
         if (!$ok) {
@@ -73,9 +73,7 @@
                     </form>               
     </article>
                
- <?php } else {
-    if ()
- } ?>
+ <?php }?>
                     </p>
 
                 </section>
