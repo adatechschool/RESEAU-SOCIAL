@@ -2,6 +2,9 @@
     include 'header.php';
 ?>
         <div id="wrapper">
+
+        
+
             <?php
             /**
              * Etape 1: Le mur concerne un utilisateur en particulier
@@ -28,7 +31,7 @@
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $user = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-                 //echo "<pre>" . print_r($user, 1) . "</pre>";
+                // echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
@@ -36,6 +39,43 @@
                     <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <a href="wall.php?user_id=<?php echo $user["id"] ?>"> <?php echo $user["alias"] ; ?></a>
                         
                         (n° <?php echo $userId ?>)
+
+                       <article>
+        <h2>Poster un message</h2>
+            <?php
+    $user_id1 = $_SESSION['connected_id'];
+    //echo "<pre>" . print_r($_GET['user_id']) . "</pre>";
+    if($_GET['user_id'] == $_SESSION['connected_id']){
+
+   
+    if (isset($_POST['message'])){
+        $postContent1 = $mysqli->real_escape_string($_POST['message']);
+
+        $lInstructionSql1 = "INSERT INTO posts (user_id, content, created) "
+        . "VALUES ('$user_id1', '$postContent1', NOW())";
+
+        $ok = $mysqli->query($lInstructionSql1);
+        if (!$ok) {
+            echo "Impossible d'ajouter le message: " . $mysqli->error;
+        } else {
+            echo "Message posté avec succès";
+        }
+    } 
+?>
+                   
+                    <form action="wall.php?user_id=<?php echo $user["id"] ?>" method="post">
+                        <input type='hidden' name='user_id1' value="<?php echo $user_id1; ?>">
+                        <dl>
+                            <dt><label for='message'>Ecrire un nouveau message</label></dt>
+                            <dd><textarea name='message'></textarea></dd>
+                        </dl>
+                        <input type='submit'>
+                    </form>               
+    </article>
+               
+ <?php } else {
+    if ()
+ } ?>
                     </p>
                 </section>
             </aside>

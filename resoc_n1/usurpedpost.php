@@ -62,7 +62,7 @@
                         
                         // Etape 5 : execution
                         $ok = $mysqli->query($lInstructionSql);
-                        echo "<pre>" . print_r($lInstructionSql, 1) . "</pre>";
+                        //echo "<pre>" . print_r($lInstructionSql, 1) . "</pre>";
                         if ( ! $ok)
                         {
                             echo "Impossible d'ajouter le message: " . $mysqli->error;
