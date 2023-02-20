@@ -99,10 +99,8 @@
         <input type='hidden' name='???' value='a_changer'>
         <input class="submit" name="subscribe" type='submit' value="<?php echo $value;?>">
     </form>
-                
 
-
-                
+  
             </aside>
             <main>
                 <?php
