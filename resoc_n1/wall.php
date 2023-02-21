@@ -55,7 +55,7 @@
         $postContent1 = $mysqli->real_escape_string($_POST['message']);
 
         $lInstructionSql1 = "INSERT INTO posts (user_id, content, created) "
-        . "VALUES ('$user_id1', '$postContent1', NOW()),";
+        . "VALUES ('$user_id1', '$postContent1', NOW())";
 
         $ok = $mysqli->query($lInstructionSql1);
         if (!$ok) {
@@ -85,7 +85,7 @@
                  $enCoursDeTraitement = isset($_POST['subscribe']);
                  $followedId=$_GET['user_id'];
                 if($enCoursDeTraitement){
-                    $lInstructionSql3="INSERT INTO followers VALUES (NULL, '$followedId', '$user_id1')";
+                    $lInstructionSql3 = "INSERT INTO followers VALUES (NULL, '$followedId', '$user_id1')";
                 }
                 $ok2 = $mysqli->query($lInstructionSql3);
                 if (! $ok2){
