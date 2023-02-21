@@ -171,60 +171,11 @@
                             <p><?php echo $post["content"] ?></p>
                             
                         </div>                                            
-                        <footer>
+                        
 
-<?php 
-$query = "SELECT id FROM posts";
-$result = $mysqli->query($query);
-$idPost = $result->fetch_assoc()['id'];
-$newQuerySQL = "SELECT id FROM likes WHERE user_id = $user_id1 AND post_id = $idPost";
-$result = $mysqli->query($newQuerySQL);
-$idLike = $result->fetch_assoc();
-
-if(!$idLike){
-    $like = "Like";
-} else {
-    $like = "Unlike";
-}
-
-$otherButtonClick = isset($_POST['like']);
-
-if ($otherButtonClick){
-    if ($like == "Like"){
-        $requette = "INSERT INTO likes VALUES (NULL, '$user_id1', '$idPost')";
-        $lastOk = $mysqli->query($requette);
-
-            if (!$lastOk){
-             echo "Impossible de liker ce post" . $mysqli->error;
-            } else {
-                echo "Vous likez ce post";
-                $like = "Unlike";
-            }
-
-    } else if ($like == "Unlike"){
-        $requette = "DELETE FROM likes WHERE user_id = $user_id1 AND post_id = $idPost";
-        $lastOk = $mysqli->query($requette);
-
-        if (!$lastOk){
-            echo "Impossible d'unliker ce post" . $mysqli->error;
-           } else {
-               echo "Vous ne likez plus ce post";
-               $like = "Like";
-           }
-    }
-}
-
+<?php
+ include "like.php";
 ?>
-
-                            <small> 
-                            <form method='post'>
-                            <input type='hidden'>
-                            <input class="submit" name="like" type='submit' value=" ♥ <?php echo $like; ?>  <?php echo $post["like_number"] ?>">
-                            </form>
-                            </small>
-                            <a href="">#  <?php echo $post["taglist"] ?></a>,
-                            <!-- <a href="">#piscitur</a>, -->
-                        </footer>
                     </article>
                 <?php } ?>
 

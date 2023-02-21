@@ -88,11 +88,9 @@
                             article et le remplacer par des informations en 
                             provenance de la base de donnée</p> -->
                     </div>                                            
-                    <footer>
-                        <small>♥ <?php echo $post["like_number"] ?></small>
-                        <a href=""># <?php echo $post["taglist"] ?></a>,
-                        <!-- <a href="">#piscitur</a>, -->
-                    </footer>
+<?php
+ include "like.php";
+?>
                 </article>
                 <?php 
                 }
