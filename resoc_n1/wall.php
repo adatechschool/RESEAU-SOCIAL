@@ -45,11 +45,10 @@
             <?php
     $user_id1 = $_SESSION['connected_id'];
     //echo "<pre>" . print_r($_GET['user_id']) . "</pre>";
-    if($_GET['user_id'] == $_SESSION['connected_id']){ ?>
+    if($_GET['user_id'] == $_SESSION['connected_id']){ 
+        ?> <h1>Poster un message</h1>
 
-<h2>Poster un message</h2>
-        
-<?php
+        <?php
    
     if (isset($_POST['message'])){
         $postContent1 = $mysqli->real_escape_string($_POST['message']);
@@ -76,29 +75,59 @@
                     </form>               
     </article>
                
- <?php }?>
+ <?php } else { 
+ $querySQL = "SELECT id FROM followers WHERE followed_user_id = $userId AND following_user_id = $user_id1";
+ $idFriend = $mysqli->query($querySQL)->fetch_assoc();
+ 
+ if (!$idFriend){
+     $button = "Suivre";
+ } else {
+     $button = "Ne plus suivre";
+ }
+ 
+ $buttonClick = isset($_POST['subscribe']);
+ 
+ if ($buttonClick) {
+     if ($button == "Suivre"){
+         $questionSQL = "INSERT INTO followers VALUES (NULL, '$userId', '$user_id1')";              
+         $newOk = $mysqli->query($questionSQL);
+ 
+         if (!$newOk){
+             echo "Impossible de suivre cette utilisatrice" . $mysqli->error;
+         } else {
+             echo "Vous suivez cette utilisatrice";
+             $button = "Ne plus suivre";
+         }
+     } else if ($button == "Ne plus suivre") {
+         $otherQuestion = "DELETE FROM followers WHERE followed_user_id = $userId AND following_user_id = $user_id1";
+         $newOk = $mysqli->query($otherQuestion);
+ 
+         if (!$newOk){
+             echo "impossible d'arrêter de suivre cette utilisatrice" . $mysqli->error;
+         } else {
+             echo "Vous ne suivez pas cette utilisatrice";
+             $button = "Suivre";
+         }
+     }
+ }
+
+?>
+
+<form method='post'>
+ <input type='hidden' name='Suivre' value='suivre'>
+ <input class="submit" name="subscribe" type='submit' value="<?php echo $button; ?>">
+</form>
+
+
+            <?php } ?>
                     </p>
 
                 </section>
                 <?php
 
-                 $enCoursDeTraitement = isset($_POST['subscribe']);
-                 $followedId=$_GET['user_id'];
-                if($enCoursDeTraitement){
-                    $lInstructionSql3="INSERT INTO followers VALUES (NULL, '$followedId', '$user_id1')";
-                }
-                $ok2 = $mysqli->query($lInstructionSql3);
-                if (! $ok2){
-                    echo "Impossible de suivre ce compte : " . $mysqli->error;
-                } else {
-                    echo "Vous suivez désormais le compte de l'utilisatrice n°$followedId";
-                }
                 
-                 ?>
-                <form method='post'>
-        <input type='hidden' name='???' value='a_changer'>
-        <input class="submit" name="subscribe" type='submit' value="<?php echo $value;?>">
-    </form>
+    ?>
+
 
   
             </aside>
