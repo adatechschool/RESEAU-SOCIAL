@@ -63,7 +63,7 @@
                         <dt>Pseudo</dt>
                         <dd><a href="wall.php?user_id=<?php echo $user["id"] ?>"> <?php echo $user["alias"] ?></a></dd>
                         <dt>Email</dt>
-                        <dd>felicie@test.org</dd>
+                        <dd><?php echo $user["email"] ?></dd>
                         <dt>Nombre de message</dt>
                         <dd><?php echo $user["totalpost"] ?></dd>
                         <dt>Nombre de "J'aime" donnés </dt>
