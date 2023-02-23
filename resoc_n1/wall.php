@@ -166,8 +166,11 @@
                     <?php $idPost = $post['id']; ?>
                         <h3>
                             <time datetime='2020-02-01 11:12:13' >31 février 2010 à 11h12</time>
+                           
                         </h3>
                         <address>par <a href="wall.php?user_id=<?php echo $user["id"] ?>"> <?php echo $user["alias"] ; ?></a></address>
+                        <div>
+                        <p><?php echo $post["content"] ?></p>
                         <div>
                             <p><?php 
                                 $postId = $post['id'];

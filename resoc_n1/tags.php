@@ -89,7 +89,7 @@
                                 provenance de la base de donnée</p> -->
                         </div>                                            
 <?php
- include "like.php";
+ 
 ?>
                     </article>
                 <?php } ?>
