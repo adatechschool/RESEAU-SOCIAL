@@ -1,5 +1,6 @@
 <?php
-    include 'header.php';
+    include 'header.php';    
+
 ?>
         <div id="wrapper">
             <aside>
@@ -43,6 +44,7 @@
                 $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
+                    posts.id,
                     users.id as author_id,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
@@ -100,16 +102,38 @@
                         <address>par <a href="wall.php?user_id=<?php echo $post["author_id"] ?>"> <?php echo $post["author_name"] ?></a> </address>
                         <div>
                             <p><?php echo $post['content']?></p>
+                            <?php 
+                                $postId = $post['id'];
+                                $new_like_count = $post['like_number'];
+                                $otherButtonClick = isset($_POST[$postId]);
+                                $like = "Like";
+                                if ($otherButtonClick){
+                                    include 'lastlike.php';
+                                };
+                            ?>
+                            <form method='post'>
+                                
+                                <input type="hidden" name=<?php echo $postId ?>>
+                                <input class="submit" name="like" type='submit' value=" ♥ <?php echo $new_like_count . $like ?>">
+                               
+                            </form>
                         </div>
-<?php
- include "like.php";
-?>
-                    </article>
+
+
+                
+                </article>
                     <?php
+                    
                     // avec le <?php ci-dessus on retourne en mode php 
-                }// cette accolade ferme et termine la boucle while ouverte avant.
+                };   // cette accolade ferme et termine la boucle while ouverte avant.
+                   
+                       
+                                  
                 ?>
 
+                
+
+                 
             </main>
         </div>
     </body>

@@ -137,7 +137,7 @@
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
                 $laQuestionEnSql = "
-                    SELECT posts.content, posts.created, users.alias as author_name, 
+                    SELECT posts.content, posts.created, users.alias as author_name, posts.id,
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
                     JOIN users ON  users.id=posts.user_id
@@ -163,21 +163,35 @@
                     //echo "<pre>" . print_r($post, 1) . "</pre>";
                     ?>                
                     <article>
+                    <?php $idPost = $post['id']; ?>
                         <h3>
                             <time datetime='2020-02-01 11:12:13' >31 février 2010 à 11h12</time>
                         </h3>
                         <address>par <a href="wall.php?user_id=<?php echo $user["id"] ?>"> <?php echo $user["alias"] ; ?></a></address>
                         <div>
-                            <p><?php echo $post["content"] ?></p>
-                            
+                            <p><?php 
+                                $postId = $post['id'];
+                                $new_like_count = $post['like_number'];
+                                $otherButtonClick = isset($_POST[$postId]);
+                                $like = "Like";
+                                if ($otherButtonClick){
+                                    include 'lastlike.php';
+                                };
+                            ?>
+                            <form method='post'>
+                                
+                                <input type="hidden" name=<?php echo $postId ?>>
+                                <input class="submit" name="like" type='submit' value=" ♥ <?php echo $new_like_count . $like ?>">
+                               
+                            </form>
                         </div>                                            
+                                       
                         
-
-<?php
- include "like.php";
-?>
                     </article>
-                <?php } ?>
+                <?php } 
+                
+                ?>
+                
 
 
             </main>
