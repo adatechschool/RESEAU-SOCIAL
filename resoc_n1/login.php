@@ -13,7 +13,7 @@ session_start();
     </head>
     <body>
         <header>
-            <img src="https://img.freepik.com/free-vector/tiny-people-beautiful-flower-garden-inside-female-head-isolated-flat-illustration_74855-11098.jpg?w=826&t=st=1677081124~exp=1677081724~hmac=ac2206dde303e4f32582f5588a7a845bb9a583095ac17674d05106cfcd19f9a4" alt="Logo de notre réseau social"/>
+            <img src="https://img.freepik.com/free-vector/young-people-standing-talking-each-other-speech-bubble-smartphone-girl-flat-vector-illustration-communication-discussion_74855-8741.jpg?w=900&t=st=1677080008~exp=1677080608~hmac=691ddc52cbcabcf2cc0a5c6e2c9703767fa598e88fddedc1281aeb2de1b71f2c" alt="Logo de notre réseau social"/>
             <nav id="menu">
                 <a href="news.php">Actualités</a>
                 <a href="wall.php">Mur</a>
